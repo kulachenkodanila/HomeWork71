@@ -6,8 +6,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-from api_v1.serializer import ProductSerializer
-from webapp.models import Product
+from api_v1.serializer import ProductSerializer, OrderSerializer, OrderProductSerializer
+from webapp.models import Product, Order
 
 
 # Create your views here.
@@ -18,8 +18,13 @@ class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
     permission_classes = [IsAuthenticated, DjangoModelPermissions]
 
-
     def get_permissions(self):
         if self.request.method in SAFE_METHODS:
             return []
         return super().get_permissions()
+
+
+class OrderViewSet(ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+

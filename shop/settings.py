@@ -118,6 +118,12 @@ LOGOUT_REDIRECT_URL = "webapp:index"
 
 LOGIN_URL = "accounts:login"
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
